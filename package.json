@@ -7,6 +7,7 @@
     "@types/material-ui": "^0.18.5",
     "@types/react-router-config": "^1.0.5",
     "@types/react-router-dom": "^4.2.3",
+    "cross-env": "^5.1.1",
     "isomorphic-fetch": "^2.2.1",
     "material-ui": "^0.20.0",
     "mobx": "^3.4.1",
@@ -18,8 +19,8 @@
     "react-scripts-ts": "2.8.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "start": "cross-env NODE_ENV=development react-scripts-ts start",
+    "build": "cross-env NODE_ENV=production react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },

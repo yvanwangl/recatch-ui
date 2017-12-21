@@ -18,7 +18,7 @@ declare global {
     }
 }
 
-let initialState = JSON.parse(window.__INITIAL_STATE__ ) || {};
+let initialState = window.__INITIAL_STATE__ ? JSON.parse(window.__INITIAL_STATE__ ) : {post: {}};
 let store = configStore(initialState);
 
 ReactDOM.render(

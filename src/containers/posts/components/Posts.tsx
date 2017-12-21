@@ -21,6 +21,7 @@ class Posts extends React.Component<PostsProps> {
         return (
             <div>
                 {postItems}
+                博客列表
             </div>
         );
     }
