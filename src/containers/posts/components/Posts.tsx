@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { withRouter } from 'react-router';
 import { observer, inject } from 'mobx-react';
 import PostStore from '../PostStore';
+import PostItem from './PostItem';
 
 export interface PostsProps {
     post: PostStore;
+    history: any;
 }
 
 @inject('post')
@@ -13,18 +16,24 @@ class Posts extends React.Component<PostsProps> {
         await post.fetchPosts();
     }
 
+    componentDidMount() {
+        let { post } = this.props;
+        if (post.posts.length == 0) {
+            post.fetchPosts();
+        }
+    }
+
+    //查看博客详情
+    handleItemClick = (postId: string | number) => {
+        let { history } = this.props;
+        history.push(`/post/${postId}`);
+    };
+
     render() {
         let { post } = this.props;
-        let postItems = post.posts.map((p: any) => {
-            <span>{p.content}</span>
-        });
-        return (
-            <div>
-                {postItems}
-                博客列表
-            </div>
-        );
+        let postItems = post.posts.map((p: any) => <PostItem key={p._id} post={p} handleItemClick={() => this.handleItemClick(p._id)} />);
+        return postItems;
     }
 }
 
-export default Posts;
+export default withRouter(Posts);

@@ -1,4 +1,5 @@
 import Posts from './containers/posts/components/Posts';
+import PostView from './containers/posts/components/PostView';
 
 const routes =  [
     {
@@ -7,7 +8,7 @@ const routes =  [
     },
     {
         path: '/post/:postId',
-        component: Posts
+        component: PostView
     }
 ];
 

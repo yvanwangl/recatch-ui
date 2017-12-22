@@ -10,6 +10,7 @@
 	font-size: 5.4rem;
 	font-weight: normal;
 	color: #40A9F2; 
+	margin: 0;
 }
 
 .App-link-logo {
@@ -32,12 +33,25 @@
   	font-size: large;
 }
 
-.App-appbar {
-	box-shadow: none !important;
+.scrolling .App-appbar {
+	background: #1b39a8;
+	z-index: 1000;
+	box-shadow: 0 1px 4px #333;
 }
 
-.App-appbar button svg {
-	fill: #ec407a !important;
+.scrolling .App-appbar button {
+	color: #fff !important;
+}
+
+.App-appbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: none !important;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
 }
 
 .App-appbar h1 {
@@ -45,12 +59,24 @@
 	color: #ec407a !important;
 }
 
-.App-main {
+.App-appmain {
+	margin-top: 80px;
+}
+
+.App-appmain-logo {
+	background-image: url(http://materialdesignblog.com/wp-content/uploads/2015/04/MaterialDesignBlogo.png);
+	background-size: cover;
+	height: 240px;
+	margin-bottom: 30px;
+}
+
+.App-content {
 	width: 90%;
-	max-width: 1360px;
+	max-width: 1600px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-around;
+	flex-wrap: wrap;
 }
 
 @keyframes App-logo-spin {

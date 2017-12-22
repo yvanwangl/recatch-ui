@@ -21,6 +21,16 @@ declare global {
 let initialState = window.__INITIAL_STATE__ ? JSON.parse(window.__INITIAL_STATE__ ) : {post: {}};
 let store = configStore(initialState);
 
+//监听滚动事件
+let bodyClasses = document.body.classList;
+window.addEventListener('scroll', function(){
+	if(window.scrollY>0) {
+		bodyClasses.add('scrolling');
+	}else {
+		bodyClasses.remove('scrolling');
+	}
+});
+
 ReactDOM.render(
 	<Provider {...store}>
 		<MuiThemeProvider>
