@@ -1,7 +1,18 @@
 import PostStore from '../containers/posts/PostStore';
+import ProjectStore from '../containers/projects/ProjectStore';
+import LinkStore from '../containers/links/LinkStore';
 
 let rootStore = {
-    post: PostStore
+    post: PostStore,
+    project: ProjectStore,
+    link: LinkStore
+};
+
+//初始化state对象
+export let initialState = {
+    post: {},
+    project: {},
+    link: {}
 };
 
 export default function configStore(state: any = {}) {

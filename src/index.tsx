@@ -5,7 +5,7 @@ import { Provider } from 'mobx-react';
 import { BrowserRouter } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './App';
-import configStore from './store';
+import configStore, { initialState } from './store';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
@@ -13,20 +13,20 @@ import './index.css';
 useStrict(true);
 
 declare global {
-    interface Window {
-        __INITIAL_STATE__: string;
-    }
+	interface Window {
+		__INITIAL_STATE__: string;
+	}
 }
 
-let initialState = window.__INITIAL_STATE__ ? JSON.parse(window.__INITIAL_STATE__ ) : {post: {}};
-let store = configStore(initialState);
+let state = window.__INITIAL_STATE__ ? JSON.parse(window.__INITIAL_STATE__) : initialState;
+let store = configStore(state);
 
 //监听滚动事件
 let bodyClasses = document.body.classList;
-window.addEventListener('scroll', function(){
-	if(window.scrollY>0) {
+window.addEventListener('scroll', function () {
+	if (window.scrollY > 0) {
 		bodyClasses.add('scrolling');
-	}else {
+	} else {
 		bodyClasses.remove('scrolling');
 	}
 });

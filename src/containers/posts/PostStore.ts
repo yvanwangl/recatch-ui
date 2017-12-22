@@ -10,25 +10,27 @@ class PostStore {
 
     @action
     async fetchPosts() {
-        try {
-            const { data } = await request('/api/posts');
+        const result = await request('/api/posts');
+        if(result && result.success) {
             runInAction(() => {
-                this.posts = data.posts;
+                this.posts = result.data.posts;
             });
-        } catch (e) {
-
         }
     }
 
     @action
     async fetchPostById(postId: string) {
-        let updatePost = await request(`/api/posts/${postId}`);
-        this.posts = this.posts.map((post: any) => {
-            if (post.id === postId) {
-                Object.assign(post, updatePost);
-            }
-            return post;
-        })
+        let result = await request(`/api/posts/${postId}`);
+        if(result && result.success) {
+            runInAction(() => {
+                this.posts = this.posts.map((post: any) => {
+                    if (post.id === postId) {
+                        Object.assign(post, result.data);
+                    }
+                    return post;
+                })
+            });
+        }
     }
 }
 

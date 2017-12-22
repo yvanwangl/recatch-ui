@@ -79,3 +79,81 @@
     text-align: right;
     box-sizing: border-box;
 }
+
+.PostView-content {
+    padding: 0 30px 30px 30px;
+    width: 90%;
+    max-width: 960px;
+    margin: 100px auto 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid #DFDFDF;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.PostView-content .fr-box.fr-basic .fr-element {
+    min-height: 500px;
+}
+.PostView-content .fr-element.fr-disabled {
+    -webkit-user-select: auto;
+    user-select: auto;
+}
+.PostView-content .fr-toolbar.fr-top,
+.PostView-content .fr-box.fr-basic.fr-top .fr-wrapper {
+    box-shadow: none;
+    border: 0;
+}
+.PostView-title {
+    text-align: center;
+    font-size: 24px;
+    line-height: 70px;
+    margin: 0;
+    font-weight: 400;
+}
+.PostView-sibllings {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 960px;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+.PostView-sibllings div {
+    width: 48%;
+    height: 150px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+.PostView-previous span,
+.PostView-next span {
+    padding: 15px;
+    display: block;
+    background-size: 150px 150px;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.PostView-previous span p:first-child,
+.PostView-next span p:first-child {
+    font-size: 22px;
+    color: #40A9F2;
+}
+
+.PostView-previous span p:last-child,
+.PostView-next span p:last-child {
+    color: #979797;
+}
+
+.PostView-previous span {
+    padding-left: 170px;
+}
+
+.PostView-next span {
+    padding-right: 170px;
+    background-position: 100% 0;
+}

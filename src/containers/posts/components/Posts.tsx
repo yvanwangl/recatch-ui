@@ -31,7 +31,9 @@ class Posts extends React.Component<PostsProps> {
 
     render() {
         let { post } = this.props;
-        let postItems = post.posts.map((p: any) => <PostItem key={p._id} post={p} handleItemClick={() => this.handleItemClick(p._id)} />);
+        let postItems = post.posts.map((p: any) => {
+            return <PostItem key={p._id} post={p} handleItemClick={() => this.handleItemClick(p._id)} />;
+        });
         return postItems;
     }
 }

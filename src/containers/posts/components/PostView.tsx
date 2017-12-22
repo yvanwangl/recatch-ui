@@ -49,9 +49,20 @@ class PostView extends React.Component<PostViewProps> {
         history.push('/');
     };
 
+    handleSiblingClick = (postId: string) => {
+        let { history } = this.props;
+        history.push(`/post/${postId}`);
+        //滚动到顶部
+        window.scrollTo(0, 0);
+    };
+
     render() {
         let { post, match } = this.props;
-        let viewPost = post.posts.filter((post: any) => post._id == match.params.postId)[0];
+        let { posts } = post;
+        let viewPost = posts.filter((post: any) => post._id == match.params.postId)[0];
+        let viewPostIndex = posts.indexOf(viewPost);
+        let previousViewPost = viewPostIndex == 0 ? {} : posts[viewPostIndex - 1];
+        let nextViewPost = viewPostIndex == posts.length - 1 ? {} : posts[viewPostIndex + 1];
         console.log(viewPost[0]);
         let {
             author,
@@ -61,6 +72,7 @@ class PostView extends React.Component<PostViewProps> {
             publishDate,
             comments,
         } = viewPost;
+
         // let labelItems = labels.map((label, index) => {
         //     return <Chip
         //         key={index}
@@ -72,7 +84,7 @@ class PostView extends React.Component<PostViewProps> {
         // })
 
         return (
-            <div>
+            [
                 <div className='PostView-content'>
                     <h1 className='PostView-title'>{title}</h1>
                     <div className='PostView-info'>
@@ -87,9 +99,30 @@ class PostView extends React.Component<PostViewProps> {
                         model={content}
                     />
                     {/* {labelItems} */}
+                </div>,
+                <div className='PostView-sibllings'>
+                    {
+                        viewPostIndex == 0 ?
+                            null :
+                            <div className='PostView-previous'>
+                                <span onClick={() => this.handleSiblingClick(previousViewPost._id)} style={{ backgroundImage: `url(${previousViewPost.coverImg})` }}>
+                                    <p>Previous</p>
+                                    <p>{previousViewPost.title}</p>
+                                </span>
+                            </div>
+                    }
+                    {
+                        viewPostIndex == posts.length - 1 ?
+                            null :
+                            <div className='PostView-next'>
+                                <span onClick={() => this.handleSiblingClick(nextViewPost._id)} style={{ backgroundImage: `url(${previousViewPost.coverImg})` }}>
+                                    <p>Next</p>
+                                    <p>{nextViewPost.title}</p>
+                                </span>
+                            </div>
+                    }
                 </div>
-
-            </div>
+            ]
 
         );
     }

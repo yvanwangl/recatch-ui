@@ -49,10 +49,10 @@ class App extends React.Component<object, AppState> {
 						open={this.state.drawerOpen}
 					>
 						<div className='App-appmain-logo'></div>
-						<MenuItem primaryText={<MenuLink to='/' linkText='主页' />} leftIcon={<DashBoardIcon />} />
-						<MenuItem primaryText={<MenuLink to='/labels' linkText='项目' />} leftIcon={<LabelIcon />} />
-						<MenuItem primaryText={<MenuLink to='/posts' linkText='友链墙' />} leftIcon={<PostListIcon />} />
-						<MenuItem primaryText={<MenuLink to='/comments' linkText='关于' />} leftIcon={<CommentIcon />} />
+						<MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/' linkText='主页' />} leftIcon={<DashBoardIcon />} />
+						<MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/projects' linkText='项目' />} leftIcon={<LabelIcon />} />
+						<MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/links' linkText='友链墙' />} leftIcon={<PostListIcon />} />
+						<MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/about' linkText='关于' />} leftIcon={<CommentIcon />} />
 					</Drawer>
 					<div>
 						<header className='App-header'>

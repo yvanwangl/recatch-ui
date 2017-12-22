@@ -7,10 +7,10 @@
 }
 
 .App-header h2 {
-	font-size: 5.4rem;
+	font-size: 80px;
 	font-weight: normal;
 	color: #40A9F2; 
-	margin: 0;
+	margin: 0 0 30px;
 }
 
 .App-link-logo {
