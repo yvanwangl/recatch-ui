@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, RouteComponentProps } from 'react-router';
 import { observer, inject } from 'mobx-react';
 import PostStore from '../PostStore';
 import PostItem from './PostItem';
@@ -11,7 +11,7 @@ export interface PostsProps {
 
 @inject('post')
 @observer
-class Posts extends React.Component<PostsProps> {
+class Posts extends React.Component<PostsProps & RouteComponentProps<any>> {
     static async fetchData(post: PostStore, params: any) {
         await post.fetchPosts();
     }

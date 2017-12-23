@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CommentInput from './CommentInput';
-import { dateFormat } from '../../../utils/util';
+import { dateFormat } from '../../utils/util';
 //import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';

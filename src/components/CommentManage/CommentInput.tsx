@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
+import { observer } from 'mobx-react';
+import MobxReactForm from 'mobx-react-form';
+import validatorjs from 'validatorjs';
 import FlatButton from 'material-ui/FlatButton';
+
 import './index.css';
 
 export interface CommentInputProps {
@@ -12,8 +14,43 @@ export interface CommentInputProps {
     cancelComment: Function;
 }
 
-class CommentInput extends React.Component<CommentInputProps & InjectedFormProps> {
-    constructor(props: CommentInputProps & InjectedFormProps) {
+const plugins = { dvr: validatorjs };
+
+const fields = [{
+    name: 'email',
+    label: 'Email',
+    placeholder: 'Insert Email',
+    rules: 'required|email|string|between:5,25',
+}, {
+    name: 'password',
+    label: 'Password',
+    placeholder: 'Insert Password',
+    rules: 'required|string|between:5,25',
+}, {
+    name: 'passwordConfirm',
+    label: 'Password Confirmation',
+    placeholder: 'Confirm Password',
+    rules: 'required|string|same:password',
+}];
+
+const hooks = {
+    onSuccess(form) {
+        alert('Form is valid! Send the request here.');
+        // get field values
+        console.log('Form Values!', form.values());
+    },
+    onError(form) {
+        alert('Form has errors!');
+        // get all form errors
+        console.log('All form errors', form.errors());
+    }
+}
+
+const form = new MobxReactForm({ fields }, { plugins, hooks });
+
+@observer
+class CommentInput extends React.Component<CommentInputProps> {
+    constructor(props: CommentInputProps) {
         super(props);
         this.state = {
             name: '',
@@ -23,69 +60,6 @@ class CommentInput extends React.Component<CommentInputProps & InjectedFormProps
         };
     }
 
-    static validate(values: any) {
-        const errors = { commentContent: '' };
-
-        if (!values.commentContent) {
-            errors.commentContent = '留言内容不能为空  : )';
-        }
-
-        return errors;
-    }
-
-    // _setName = (event) => {
-    //     this.setState({
-    //         name: event.target.value
-    //     });
-    // }
-
-    // _setContent = (event) => {
-    //     var commentContent = event.target.value;
-    //     this.setState({
-    //         commentContent: commentContent,
-    //         remainWords: 200 - commentContent.length
-    //     });
-    //     this.refs.contentError.innerHTML = null;
-    // }
-
-    // _saveComment = () => {
-    //     let { saveComment, parentId, blogId, closeInput } = this.props;
-    //     let commentParentId = parentId || '';
-    //     let commentContent = this.state.commentContent;
-    //     let name = this.state.name;
-    //     let that = this;
-    //     //表单验证
-    //     if (commentContent == '') {
-    //         return this.refs.contentError.innerHTML = '留言内容不能为空 :)';
-    //     }
-    //     if (commentContent.length > 200) {
-    //         return this.refs.contentError.innerHTML = '留言最多说200字 :)';
-    //     }
-    //     commentContent = commentContent.replace(/<[^><]*script[^><]*>/ig, '');
-    //     commentContent = commentContent.replace(/<[\/\d\w]*>/ig, '');
-    //     if (name == '') {
-    //         name = '匿名者';
-    //     }
-    //     saveComment({
-    //         parentId: commentParentId,
-    //         blogId: blogId,
-    //         name: name,
-    //         commentContent: commentContent
-    //     }, function () {
-    //         //回复子评论要关闭输入框
-    //         if (closeInput) {
-    //             closeInput(true);
-    //         } else {
-    //             //回复文章要重置输入框
-    //             that.setState({
-    //                 name: '',
-    //                 commentContent: '',
-    //                 remainWords: 200
-    //             });
-    //         }
-    //     });
-
-    // }
     handleSave = (values: any) => {
         let { parentId, postId, saveComment } = this.props;
         Object.assign(values, { parentId, postId });
@@ -106,6 +80,21 @@ class CommentInput extends React.Component<CommentInputProps & InjectedFormProps
         let contentPlaceholder = parentId != '' ? `回复 @${parentName}：` : '回复一下：';
         return (
             <div className="CommentInput">
+                <form onSubmit={form.onSubmit}>
+                    <label htmlFor={form.$('username').id}>
+                        {form.$('username').label}
+                    </label>
+                    <input {...form.$('username').bind() } />
+                    <p>{form.$('username').error}</p>
+
+                    {/* ... other inputs ... */}
+
+                    <button type="submit" onClick={form.onSubmit}>Submit</button>
+                    <button type="button" onClick={form.onClear}>Clear</button>
+                    <button type="button" onClick={form.onReset}>Reset</button>
+
+                    <p>{form.error}</p>
+                </form>
                 <form className="CommentInput-commentForm">
                     <div className='CommentInput-form-item'>
                         <Field
@@ -129,22 +118,6 @@ class CommentInput extends React.Component<CommentInputProps & InjectedFormProps
                             } as any}
                         />
                     </div>
-                    {/* <div className="name formItem">
-                        <label htmlFor="name">昵称：</label>
-                        <input type="text" name="name" value={this.state.name} placeholder="昵称：" onChange={this.setName} />
-                    </div>
-                    <div className="commentWords formItem">
-                        <label htmlFor="content">回复：</label>
-                        <textarea name="content" value={this.state.commentContent} placeholder={this.state.contentPlaceholder} onChange={this.setContent}>
-                        </textarea>
-                        <span className="error" ref="contentError"></span>
-                    </div>
-                    <div className="commentInfo">
-                        <span className="remainWords">还可以输入<span>{this.state.remainWords}</span>字</span>
-                        <span className="saveComment" onClick={this.saveComment}>
-                            发布
-                        </span>
-                    </div> */}
                     <div className='CommentInput-buttons'>
                         <FlatButton secondary={true} label='取消' onClick={() => cancelComment()} />
                         <FlatButton primary={true} label='发布' onClick={handleSubmit(this.handleSave)} />
@@ -156,7 +129,4 @@ class CommentInput extends React.Component<CommentInputProps & InjectedFormProps
     }
 }
 
-export default reduxForm({
-    form: 'comment',
-    validate: CommentInput.validate,
-})(CommentInput) as any;
+export default CommentInput;

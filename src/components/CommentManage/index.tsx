@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import Paper from 'material-ui/Paper';
-import { withRouter } from 'react-router';
 import CommentItem from './CommentItem';
 import { formatComments } from '../../utils/util';
 import './index.css';
@@ -65,9 +64,8 @@ class CommentManage extends React.Component<CommentManageProps, CommentManageSta
          */
         let newComments = formatComments(comments);
         //对评论按博客进行归类
-        let commentMap = {};
+        let commentItems: Array<React.ReactNode> = [];
         newComments.map((comment: any, index: number) => {
-            let commentItems: Array<React.ReactNode> = [];
             commentItems.push(
                 <CommentItem
                     key={comment['_id']}
@@ -81,27 +79,16 @@ class CommentManage extends React.Component<CommentManageProps, CommentManageSta
                 commentIterator(comment['children'], commentItems, comment['name'], addComment, deleteComment);
             }
 
-            if (!commentMap[comment.postId]) {
-                //let post = posts.filter((post: any) => post.id == comment.postId)[0] || '';
-                commentMap[comment.postId] = [];
-                commentMap[comment.postId]['postName'] = comment.postName;
-            }
-            commentMap[comment.postId].push(commentItems);
         });
-        let commentList = Object.keys(commentMap).map(postId => {
-            let commentItems = commentMap[postId];
-            return (
-                <CommentCard key={postId} commentItems={commentItems} />
-            );
-        });
+        
         return (
             <Paper className='Manage-container'>
                 <div className="CommentManage-commentWrap">
-                    {commentList}
+                    {commentItems}
                 </div>
             </Paper>
         );
     }
 }
 
-export default withRouter(CommentManage);
+export default CommentManage;
