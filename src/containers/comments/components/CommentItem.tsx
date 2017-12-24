@@ -15,7 +15,6 @@ export interface CommentItemPorps {
 
 export interface CommentItemState {
     addChildComment: boolean;
-    open: boolean;
     commentId: string;
 }
 
@@ -24,7 +23,6 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
         super(props);
         this.state = {
             addChildComment: false,
-            open: false,
             commentId: ''
         };
     }
@@ -54,26 +52,6 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
             }
         });
     };
-
-    //删除按钮点击事件
-    handleDelete = (commentId: string) => {
-        this.setState({
-            open: true,
-            commentId
-        });
-    };
-
-    //关闭弹窗事件
-	dialogCancel = () => {
-		this.setState({ open: false, commentId: '' });
-	};
-
-	//弹窗确认删除评论
-	dialogConfirm = () => {
-        let { handleDelete } = this.props;
-		this.setState({ open: false });
-		handleDelete(this.state.commentId);
-	};
 
     // _agreeClick(event) {
     //     let { comment, commentActions } = this.props;
@@ -137,21 +115,6 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
         // var agreeClick = !this.state.agreeClick ? this.agreeClick : null;
         // var disAgreeClick = !this.state.disAgreeClick ? this.disAgreeClick : null;
         var commentItem = comment['parentId'] == '' ? 'commentItem' : 'commentItem childComment';
-
-        //dialog Actions
-		const actions = [
-			<FlatButton
-				label="取消"
-				primary={true}
-				onClick={this.dialogCancel}
-			/>,
-			<FlatButton
-				label="确认"
-				primary={true}
-				keyboardFocused={true}
-				onClick={this.dialogConfirm}
-			/>,
-        ];
         
         return (
             <div className={commentItem}>
@@ -182,22 +145,13 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
                     <FlatButton label="删除" secondary={true} onClick={() => this.handleDelete(comment['id'])} />
                     <FlatButton label="回复" primary={true} onClick={this.handleReply} />
                 </div>
-                <Dialog
-                    title="删除提示"
-                    actions={actions}
-                    modal={false}
-                    open={this.state.open}
-                    onRequestClose={this.dialogCancel}
-                >
-                    确认删除该评论吗？该评论的下级子评论也会一并删除！
-                </Dialog>
                 {
                     this.state.addChildComment ?
                         <CommentInput
                             parentId={comment['id']}
                             parentName={comment['name']}
                             postId={comment['postId']}
-                            saveComment={this.handleSave}
+                            onSubmit={this.handleSave}
                             cancelComment={this.handleCancel}
                         />
                         : null
