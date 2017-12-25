@@ -1,3 +1,8 @@
+.Posts-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .PostItem-cart-wrapper {
     display: flex;
     justify-content: space-between;
@@ -80,10 +85,14 @@
     box-sizing: border-box;
 }
 
-.PostView-content {
-    padding: 0 30px 30px 30px;
+.PostView-wrapper {
     width: 90%;
     max-width: 960px;
+    margin: 0 auto;
+}
+
+.PostView-content {
+    padding: 0 30px 30px 30px;
     margin: 100px auto 0;
     background: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
@@ -92,6 +101,7 @@
     vertical-align: top;
     display: inline-block;
     box-sizing: border-box;
+    width: 100%;
 }
 .PostView-content .fr-box.fr-basic .fr-element {
     min-height: 500px;
@@ -115,8 +125,6 @@
 .PostView-sibllings {
     display: flex;
     justify-content: space-between;
-    width: 90%;
-    max-width: 960px;
     padding-top: 30px;
     padding-bottom: 15px;
 }

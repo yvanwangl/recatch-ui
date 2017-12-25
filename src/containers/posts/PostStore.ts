@@ -4,8 +4,11 @@ import request from '../../utils/request';
 class PostStore {
     @observable posts: any = [];
 
-    constructor(initialState: any = {}) {
+    rootStore: object;
+
+    constructor(initialState: any = {}, rootStore: object) {
         Object.assign(this, initialState);
+        this.rootStore = rootStore;
     }
 
     @action
@@ -24,13 +27,23 @@ class PostStore {
         if(result && result.success) {
             runInAction(() => {
                 this.posts = this.posts.map((post: any) => {
-                    if (post.id === postId) {
+                    if (post._id === postId) {
                         Object.assign(post, result.data);
                     }
                     return post;
-                })
+                });
             });
         }
+    }
+
+    @action
+    updatePost(comment: any){
+        this.posts = this.posts.map((post: any) => {
+            if (post._id === comment.postId) {
+                post.comments.push(comment);
+            }
+            return post;
+        });
     }
 }
 

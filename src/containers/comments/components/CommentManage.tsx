@@ -1,62 +1,43 @@
 import * as React from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
+import CommentStore from '../CommentStore';
 import Paper from 'material-ui/Paper';
 import CommentItem from './CommentItem';
-import { formatComments } from '../../utils/util';
+import { formatComments } from '../../../utils/util';
 import './index.css';
 
 //评论生成迭代器
-function commentIterator(childComments: any, commentItems: any, parentName: any, addComment: Function, deleteComment: Function) {
+function commentIterator(childComments: any, commentItems: any, parentName: any, saveComment: Function) {
     childComments.map((childComment: any) => {
         commentItems.push(
             <CommentItem
                 key={childComment['_id']}
-                comment={childComment}
+                commentValue={childComment}
                 parentName={parentName}
-                handleAdd={addComment}
-                handleDelete={deleteComment}
+                saveComment={saveComment}
             />
         )
         if (childComment['children']) {
-            commentIterator(childComment['children'], commentItems, childComment['name'], addComment, deleteComment);
+            commentIterator(childComment['children'], commentItems, childComment['name'], saveComment);
         }
     });
 }
 
 export interface CommentManageProps {
     comments: any;
-    fetchComments: Function;
-    addComment: Function;
-    deleteComment: Function;
-    posts: any;
+    comment: CommentStore;
 }
 
 export interface CommentManageState {
     expanded: boolean;
 }
 
+@(inject('comment') as any)
 @observer
 class CommentManage extends React.Component<CommentManageProps, CommentManageState> {
-    constructor(props: CommentManageProps) {
-        super(props);
-        this.state = {
-            expanded: false,
-        };
-    }
-
-    handleExpandChange = (expanded: boolean) => {
-        this.setState({ expanded });
-    };
-
-    componentDidMount() {
-        let { comments, fetchComments } = this.props;
-        if (comments.length == 0) {
-            fetchComments();
-        }
-    }
 
     render() {
-        let { comments, addComment, deleteComment } = this.props;
+        let { comments, comment: commentStore } = this.props;
         /**
          * 对评论进行序列化操作
          * 对评论按日期进行倒叙
@@ -69,14 +50,13 @@ class CommentManage extends React.Component<CommentManageProps, CommentManageSta
             commentItems.push(
                 <CommentItem
                     key={comment['_id']}
-                    comment={comment}
+                    commentValue={comment}
                     parentName=''
-                    handleAdd={addComment}
-                    handleDelete={deleteComment}
+                    saveComment={commentStore.saveComment}
                 />
             );
             if (comment['children']) {
-                commentIterator(comment['children'], commentItems, comment['name'], addComment, deleteComment);
+                commentIterator(comment['children'], commentItems, comment['name'], commentStore.saveComment);
             }
 
         });
@@ -91,4 +71,4 @@ class CommentManage extends React.Component<CommentManageProps, CommentManageSta
     }
 }
 
-export default CommentManage;
+export default CommentManage as any;

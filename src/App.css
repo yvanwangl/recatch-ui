@@ -21,7 +21,8 @@
     overflow: hidden;
     line-height: .8;
     position: relative;
-    text-align: center;
+	text-align: center;
+	cursor: pointer;
 }
 
 .App-link-logo img {
@@ -74,9 +75,6 @@
 	width: 90%;
 	max-width: 1600px;
 	margin: 0 auto;
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
 }
 
 @keyframes App-logo-spin {

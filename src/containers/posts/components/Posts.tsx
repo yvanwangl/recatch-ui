@@ -24,8 +24,9 @@ class Posts extends React.Component<PostsProps & RouteComponentProps<any>> {
     }
 
     //查看博客详情
-    handleItemClick = (postId: string | number) => {
-        let { history } = this.props;
+    handleItemClick = (postId: string) => {
+        let { history, post } = this.props;
+        post.fetchPostById(postId);
         history.push(`/post/${postId}`);
     };
 
@@ -34,7 +35,9 @@ class Posts extends React.Component<PostsProps & RouteComponentProps<any>> {
         let postItems = post.posts.map((p: any) => {
             return <PostItem key={p._id} post={p} handleItemClick={() => this.handleItemClick(p._id)} />;
         });
-        return postItems;
+        return <div className='Posts-content'>
+            {postItems}
+        </div>;
     }
 }
 

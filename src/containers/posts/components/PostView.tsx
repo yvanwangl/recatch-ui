@@ -15,8 +15,7 @@ import FroalaEditor from 'react-froala-wysiwyg';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router';
 import PostStore from '../PostStore';
-// import FlatButton from 'material-ui/FlatButton';
-// import ListIcon from 'material-ui/svg-icons/action/list';
+import CommentManage from '../../comments/components/CommentManage';
 import { dateFormat } from '../../../utils/util';
 
 export interface PostViewProps {
@@ -50,15 +49,15 @@ class PostView extends React.Component<PostViewProps> {
     };
 
     handleSiblingClick = (postId: string) => {
-        let { history } = this.props;
+        let { history, post } = this.props;
+        post.fetchPostById(postId);
         history.push(`/post/${postId}`);
         //滚动到顶部
         window.scrollTo(0, 0);
     };
 
     render() {
-        let { post, match } = this.props;
-        let { posts } = post;
+        let { post: { posts }, match } = this.props;
         let viewPost = posts.filter((post: any) => post._id == match.params.postId)[0];
         let viewPostIndex = posts.indexOf(viewPost);
         let previousViewPost = viewPostIndex == 0 ? {} : posts[viewPostIndex - 1];
@@ -84,7 +83,7 @@ class PostView extends React.Component<PostViewProps> {
         // })
 
         return (
-            [
+            <div className='PostView-wrapper'>
                 <div className='PostView-content'>
                     <h1 className='PostView-title'>{title}</h1>
                     <div className='PostView-info'>
@@ -99,7 +98,7 @@ class PostView extends React.Component<PostViewProps> {
                         model={content}
                     />
                     {/* {labelItems} */}
-                </div>,
+                </div>
                 <div className='PostView-sibllings'>
                     {
                         viewPostIndex == 0 ?
@@ -122,8 +121,10 @@ class PostView extends React.Component<PostViewProps> {
                             </div>
                     }
                 </div>
-            ]
-
+                {
+                    comments.length > 0 ? <CommentManage comments={comments} /> : null
+                }
+            </div>
         );
     }
 }

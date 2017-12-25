@@ -1,16 +1,16 @@
 import * as React from 'react';
+import { observer } from 'mobx-react';
 import CommentInput from './CommentInput';
-import { dateFormat } from '../../utils/util';
+import { dateFormat } from '../../../utils/util';
 //import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
+import commentForm from './commentForm';
 import './index.css';
 
 export interface CommentItemPorps {
-    comment: any;
+    commentValue: any;
     parentName: string;
-    handleAdd: Function;
-    handleDelete: Function;
+    saveComment: Function;
 }
 
 export interface CommentItemState {
@@ -18,6 +18,7 @@ export interface CommentItemState {
     commentId: string;
 }
 
+@observer
 export default class CommentItem extends React.Component<CommentItemPorps, CommentItemState> {
     constructor(props: CommentItemPorps) {
         super(props);
@@ -32,6 +33,7 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
         this.setState({
             addChildComment: !this.state.addChildComment
         });
+        commentForm.clear();
     }
 
     //取消按钮点击事件
@@ -39,17 +41,19 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
         this.setState({
             addChildComment: false
         });
+        commentForm.clear();
     };
 
     //提交按钮点击事件
-    handleSave = (comment: any) => {
-        let { handleAdd } = this.props;
-        handleAdd(comment).then((result: any) => {
-            if (result.success) {
-                this.setState({
-                    addChildComment: false
-                });
-            }
+    handleSave = () => {
+        let { commentValue: { _id, postId }, saveComment } = this.props;
+        let values = commentForm.values();
+        Object.assign(values, { parentId: _id, postId });
+        saveComment(values).then(()=> {
+            this.setState({
+                addChildComment: false
+            });
+            commentForm.clear();
         });
     };
 
@@ -111,18 +115,18 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
     // }
 
     render() {
-        let { comment, parentName } = this.props;
+        let { commentValue: { parentId, name, commentTime, commentContent, _id: id }, parentName } = this.props;
         // var agreeClick = !this.state.agreeClick ? this.agreeClick : null;
         // var disAgreeClick = !this.state.disAgreeClick ? this.disAgreeClick : null;
-        var commentItem = comment['parentId'] == '' ? 'commentItem' : 'commentItem childComment';
-        
+        var commentItem = parentId == '' ? 'commentItem' : 'commentItem childComment';
+
         return (
             <div className={commentItem}>
                 <div className="commentatorInfo">
-                    <p className="commentTime">{comment['name']} {dateFormat(comment['commentTime'], 2)} {parentName == '' ? '如是说：' : '回复：@' + parentName}</p>
+                    <p className="commentTime">{name} {dateFormat(commentTime, 2)} {parentName == '' ? '如是说：' : '回复：@' + parentName}</p>
                 </div>
                 <p className="commentContent">
-                    {comment['commentContent']}
+                    {commentContent}
                 </p>
                 <div className="commentAction">
                     {/* <span className="agree" onClick={agreeClick}>
@@ -132,27 +136,18 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
                     <span className="disagree" onClick={disAgreeClick}>
                         <Icon type="dislike" className="icon" />
                         <i>反对( {comment['disagree']} )</i>
-                    </span>
-                    <span className="reply" onClick={this.replyClick}>
-                        <Icon type="message" className="icon" />
-                        <i>回复</i>
                     </span> */}
-                    {/*<span className="delete" onClick={this.deleteClick}><Icon type="close" className="icon"/>删除</span>*/}
-                    {/* <span className="delete" onClick={() => handleDelete(comment['id'])}>
-                        <DeleteIcon />
-                        <i>删除</i>
-                    </span> */}
-                    <FlatButton label="删除" secondary={true} onClick={() => this.handleDelete(comment['id'])} />
+
                     <FlatButton label="回复" primary={true} onClick={this.handleReply} />
                 </div>
                 {
                     this.state.addChildComment ?
                         <CommentInput
-                            parentId={comment['id']}
-                            parentName={comment['name']}
-                            postId={comment['postId']}
-                            onSubmit={this.handleSave}
+                            parentId={id}
+                            parentName={name}
+                            commentForm={commentForm}
                             cancelComment={this.handleCancel}
+                            saveComment={this.handleSave}
                         />
                         : null
                 }

@@ -12,16 +12,16 @@ let rootStore = {
 
 //初始化state对象
 export let initialState = {
-    form: {},
     post: {},
     project: {},
-    link: {}
+    link: {},
+    comment: {}
 };
 
 export default function configStore(state: any = {}) {
     const createdStores = {};
     Object.keys(state).map(key => {
-        createdStores[key] = new rootStore[key](state[key]);
+        createdStores[key] = new rootStore[key](state[key], createdStores);
     });
 
     return createdStores;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router';
 import routes from './routes';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -12,11 +13,15 @@ import CommentIcon from 'material-ui/svg-icons/communication/comment';
 import ListButton from './components/ListButton';
 import './App.css';
 
+export interface AppProps {
+	history: any;
+}
+
 export interface AppState {
 	drawerOpen: boolean;
 }
 
-class App extends React.Component<object, AppState> {
+class App extends React.Component<object & RouteComponentProps<any>, AppState> {
 
 	constructor(props: any) {
 		super(props);
@@ -29,6 +34,11 @@ class App extends React.Component<object, AppState> {
 		this.setState({
 			drawerOpen: !this.state.drawerOpen
 		});
+	};
+
+	handleLogoClick = ()=> {
+		let { history } = this.props;
+		history.push('/');
 	};
 
 	render() {
@@ -56,9 +66,9 @@ class App extends React.Component<object, AppState> {
 					</Drawer>
 					<div>
 						<header className='App-header'>
-							<a className='App-link-logo' href="/">
+							<span className='App-link-logo' onClick={this.handleLogoClick}>
 								<img src="http://materialdesignblog.com/wp-content/uploads/2015/02/logoMDBtransparentheader-2.png" alt="" />
-							</a>
+							</span>
 							<h2>Yvan Blog</h2>
 						</header>
 						<main className='App-content'>
@@ -80,4 +90,4 @@ class App extends React.Component<object, AppState> {
 	}
 }
 
-export default App;
+export default withRouter(App) as any;
