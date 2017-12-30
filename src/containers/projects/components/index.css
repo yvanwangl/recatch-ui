@@ -1,0 +1,7 @@
+.ProjectManage-item-wrapper {
+    display: flex;
+    padding: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
