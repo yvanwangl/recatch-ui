@@ -4,7 +4,7 @@ import LinkStore from '../LinkStore';
 import RaisedButton from 'material-ui/RaisedButton';
 import { default as LinkItem } from '../../../components/Item';
 import linkForm from './linkForm';
-import LinkForm from './LinkForm';
+import LinkForm from './LinkFormComponent';
 
 export interface LinkModel {
     id: string;

@@ -24,16 +24,16 @@ class LinkStore {
             method: 'post',
             body: JSON.stringify(link)
         });
-        if (result && result.success) {
-            runInAction(() => {
-                this.links = this.links.map((link: object) => {
-                    if(link['_id'] == result.data._id) {
-                        Object.assign(link, result.data);
-                    }
-                    return link;
-                });
-            });
-        }
+        // if (result && result.success) {
+        //     runInAction(() => {
+        //         this.links = this.links.map((link: object) => {
+        //             if(link['_id'] == result.data._id) {
+        //                 Object.assign(link, result.data);
+        //             }
+        //             return link;
+        //         });
+        //     });
+        // }
         return result;
     }
 }

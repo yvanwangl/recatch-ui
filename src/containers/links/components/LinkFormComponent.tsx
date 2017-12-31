@@ -89,6 +89,15 @@ class LinkForm extends React.Component<LinkFormProps, LinkFormState> {
                     </div>
                     <div className='LinkInput-form-item'>
                         <TextField
+                            floatingLabelText='邮箱地址'
+                            hintText='审核结果将会以邮件的形式发送到您的邮箱 :)'
+                            errorText={linkField.error}
+                            fullWidth={true}
+                            {...linkField.bind() }
+                        />
+                    </div>
+                    <div className='LinkInput-form-item'>
+                        <TextField
                             floatingLabelText='你的梦想是什么'
                             hintText='你的梦想是什么'
                             errorText={descriptionField.error}
@@ -101,7 +110,7 @@ class LinkForm extends React.Component<LinkFormProps, LinkFormState> {
                 </form>
                 <Snackbar
                     open={openSnackbar}
-                    message="项目保存成功 :)"
+                    message="友链申请提交成功 :)"
                     autoHideDuration={delayTime}
                     style={{ textAlign: 'center' }}
                 />

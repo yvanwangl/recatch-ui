@@ -11,6 +11,10 @@ const fields = [{
     name: 'link',
     label: 'Web Address',
     rules: 'required|string|between:1,50',
+},{
+    name: 'email',
+    label: 'Email',
+    rules: 'required|string|email|between:1,50',
 }, {
     name: 'description',
     label: 'Web Description',
