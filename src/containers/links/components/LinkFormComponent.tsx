@@ -45,6 +45,7 @@ class LinkForm extends React.Component<LinkFormProps, LinkFormState> {
         let { openSnackbar } = this.state;
         let nameField = linkForm.$('name');
         let linkField = linkForm.$('link');
+        let emailField = linkForm.$('email');
         let descriptionField = linkForm.$('description');
 
         const actions = [
@@ -75,6 +76,7 @@ class LinkForm extends React.Component<LinkFormProps, LinkFormState> {
                             floatingLabelText='网站名称'
                             hintText='网站名称'
                             errorText={nameField.error}
+                            fullWidth={true}
                             {...nameField.bind() }
                         />
                     </div>
@@ -91,9 +93,9 @@ class LinkForm extends React.Component<LinkFormProps, LinkFormState> {
                         <TextField
                             floatingLabelText='邮箱地址'
                             hintText='审核结果将会以邮件的形式发送到您的邮箱 :)'
-                            errorText={linkField.error}
+                            errorText={emailField.error}
                             fullWidth={true}
-                            {...linkField.bind() }
+                            {...emailField.bind() }
                         />
                     </div>
                     <div className='LinkInput-form-item'>

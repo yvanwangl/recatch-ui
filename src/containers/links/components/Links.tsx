@@ -51,6 +51,7 @@ class Links extends React.Component<LinkProps, LinkState> {
         this.setState({
             openDialog: false
         });
+        linkForm.clear();
     };
 
     render() {
@@ -69,7 +70,7 @@ class Links extends React.Component<LinkProps, LinkState> {
                             openDialog={openDialog}
                         /> : null
                 }
-                <RaisedButton secondary={true} label="加入友链" fullWidth={true} onClick={this.handleCreate} />
+                <RaisedButton style={{marginTop: 30}} secondary={true} label="加入友链" fullWidth={true} onClick={this.handleCreate} />
             </div>
         );
     }

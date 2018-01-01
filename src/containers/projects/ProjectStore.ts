@@ -13,7 +13,7 @@ class ProjectStore {
         let result = await request('/api/projects');
         if (result && result.success) {
             runInAction(() => {
-                this.projects = result.data.projects;
+                this.projects = result.data;
             });
         }
     }
