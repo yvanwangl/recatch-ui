@@ -36,7 +36,7 @@ class App extends React.Component<object & RouteComponentProps<any>, AppState> {
 		});
 	};
 
-	handleLogoClick = ()=> {
+	handleLogoClick = () => {
 		let { history } = this.props;
 		history.push('/');
 	};
@@ -47,8 +47,8 @@ class App extends React.Component<object & RouteComponentProps<any>, AppState> {
 				<header className='App-appbar'>
 					<div style={{ width: 100, height: 80 }}></div>
 					<span style={{ paddingRight: 20 }}>
-						<FlatButton label="登陆" labelStyle={{fontSize: 16}} secondary={true} />
-						<FlatButton label="注册" labelStyle={{fontSize: 16}} secondary={true} />
+						<FlatButton label="登陆" labelStyle={{ fontSize: 16 }} secondary={true} />
+						<FlatButton label="注册" labelStyle={{ fontSize: 16 }} secondary={true} />
 					</span>
 				</header>
 				<ListButton listClassName={this.state.drawerOpen ? 'close' : 'list'} onButtonClick={this.handleClick} />
@@ -58,7 +58,7 @@ class App extends React.Component<object & RouteComponentProps<any>, AppState> {
 						onRequestChange={(open) => this.setState({ drawerOpen: open })}
 						open={this.state.drawerOpen}
 					>
-						<div className='App-appmain-logo'></div>
+						<div className='App-appmain-logo'>Yvan</div>
 						<MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/' linkText='主页' />} leftIcon={<DashBoardIcon />} />
 						<MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/projects' linkText='项目' />} leftIcon={<LabelIcon />} />
 						<MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/links' linkText='友链墙' />} leftIcon={<PostListIcon />} />
@@ -67,9 +67,8 @@ class App extends React.Component<object & RouteComponentProps<any>, AppState> {
 					<div>
 						<header className='App-header'>
 							<span className='App-link-logo' onClick={this.handleLogoClick}>
-								<img src="http://materialdesignblog.com/wp-content/uploads/2015/02/logoMDBtransparentheader-2.png" alt="" />
+								<h2>Yvan Blog</h2>
 							</span>
-							<h2>Yvan Blog</h2>
 						</header>
 						<main className='App-content'>
 							<Switch>
@@ -78,8 +77,12 @@ class App extends React.Component<object & RouteComponentProps<any>, AppState> {
 								}
 							</Switch>
 						</main>
-						<footer style={{height: 100, textAlign: 'center', background: '#000', color: '#fff'}}>
-							<p style={{lineHeight: '100px'}}>Yvan wang's blog</p>
+						<footer className='App-footer'>
+							<a href=""></a>
+							<a href=""></a>
+							<p>Designed and Developed by Yafei Wang.</p>
+							<p>Copyright © 2015 YvanWang.com. All Rights Reserved.</p>
+							<p>京 ICP 备 15039446 号</p>
 						</footer>
 					</div>
 

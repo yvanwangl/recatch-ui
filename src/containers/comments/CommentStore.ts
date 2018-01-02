@@ -20,8 +20,8 @@ class CommentStore {
         });
         if(result && result.success) {
             this.rootStore['post'].updatePost(result.data);
-            return result;
         }
+        return result;
     }
 
 }

@@ -6,8 +6,10 @@
     justify-content: space-between;
 }
 .Item-card {
-    width: 30%;
+    width: 48%;
     position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) !important;
 }
 .Item-card-title {
 	font-size: 20px;

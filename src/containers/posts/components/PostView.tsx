@@ -4,6 +4,7 @@ import TodayIcon from 'material-ui/svg-icons/action/today';
 import VisibilityIcon from 'material-ui/svg-icons/action/visibility';
 import CommentIcon from 'material-ui/svg-icons/communication/comment';
 import AuthorIcon from 'material-ui/svg-icons/image/edit';
+import Chip from 'material-ui/Chip';
 // Require Editor JS files.
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 // Require Editor CSS files.
@@ -43,12 +44,16 @@ class PostView extends React.Component<PostViewProps> {
         }
     };
 
+    static async fetchData(post: PostStore, params: any) {
+        await post.fetchPostById(params.postId);
+    }
+
     handleList = () => {
         let { history } = this.props;
         history.push('/');
     };
 
-    handleSiblingClick = (postId: string) => {
+    handleSiblingClick = (postId: string) => () => {
         let { history, post } = this.props;
         post.fetchPostById(postId);
         history.push(`/post/${postId}`);
@@ -56,31 +61,43 @@ class PostView extends React.Component<PostViewProps> {
         window.scrollTo(0, 0);
     };
 
+    //客户端渲染，加载所有文章，
+    componentDidMount() {
+        let { post, match } = this.props;
+        if (post.posts.length == 0) {
+            post.fetchPosts().then(()=> post.fetchPostById(match.params.postId));
+        }
+    }
+
     render() {
         let { post: { posts }, match } = this.props;
+        if(posts.length == 0){
+            return null;
+        }
         let viewPost = posts.filter((post: any) => post._id == match.params.postId)[0];
         let viewPostIndex = posts.indexOf(viewPost);
         let previousViewPost = viewPostIndex == 0 ? {} : posts[viewPostIndex - 1];
         let nextViewPost = viewPostIndex == posts.length - 1 ? {} : posts[viewPostIndex + 1];
-        console.log(viewPost[0]);
         let {
-            author,
-            count,
-            title,
-            content,
-            publishDate,
-            comments,
-        } = viewPost;
+            _id = '',
+            author = '',
+            count = '',
+            title = '',
+            content = '',
+            publishDate = '',
+            comments = [],
+            labels = []
+        } = viewPost || {};
 
-        // let labelItems = labels.map((label, index) => {
-        //     return <Chip
-        //         key={index}
-        //         style={{ margin: 4, display: 'inline-block' }}
-        //         backgroundColor={label.bgColor}
-        //         labelColor={label.fontColor}>
-        //         {label.name}
-        //     </Chip>;
-        // })
+        let labelItems = labels.map((label: any) => {
+            return <Chip
+                key={label['_id']}
+                style={{ margin: 4, display: 'inline-block' }}
+                backgroundColor={label.bgColor}
+                labelColor={label.fontColor}>
+                {label.name}
+            </Chip>;
+        })
 
         return (
             <div className='PostView-wrapper'>
@@ -97,14 +114,14 @@ class PostView extends React.Component<PostViewProps> {
                         config={this.config}
                         model={content}
                     />
-                    {/* {labelItems} */}
+                    {labelItems}
                 </div>
                 <div className='PostView-sibllings'>
                     {
                         viewPostIndex == 0 ?
                             null :
                             <div className='PostView-previous'>
-                                <span onClick={() => this.handleSiblingClick(previousViewPost._id)} style={{ backgroundImage: `url(${previousViewPost.coverImg})` }}>
+                                <span onClick={this.handleSiblingClick(previousViewPost._id)} style={{ backgroundImage: `url(${previousViewPost.coverImg})` }}>
                                     <p>Previous</p>
                                     <p>{previousViewPost.title}</p>
                                 </span>
@@ -114,16 +131,14 @@ class PostView extends React.Component<PostViewProps> {
                         viewPostIndex == posts.length - 1 ?
                             null :
                             <div className='PostView-next'>
-                                <span onClick={() => this.handleSiblingClick(nextViewPost._id)} style={{ backgroundImage: `url(${previousViewPost.coverImg})` }}>
+                                <span onClick={this.handleSiblingClick(nextViewPost._id)} style={{ backgroundImage: `url(${previousViewPost.coverImg})` }}>
                                     <p>Next</p>
                                     <p>{nextViewPost.title}</p>
                                 </span>
                             </div>
                     }
                 </div>
-                {
-                    comments.length > 0 ? <CommentManage comments={comments} /> : null
-                }
+                <CommentManage postId={_id} comments={comments} />
             </div>
         );
     }

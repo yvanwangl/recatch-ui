@@ -26,4 +26,11 @@ const hooks = {
     }
 }
 
-export default new MobxReactForm({ fields }, { plugins, hooks });
+const options = {
+    showErrorsOnClear: false,
+    showErrorsOnReset: false
+};
+
+const commentFormConstructor = () => new MobxReactForm({ fields }, { plugins, hooks, options });
+
+export default commentFormConstructor;

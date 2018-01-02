@@ -4,7 +4,7 @@ import CommentInput from './CommentInput';
 import { dateFormat } from '../../../utils/util';
 //import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import FlatButton from 'material-ui/FlatButton';
-import commentForm from './commentForm';
+import commentFormConstructor from './commentForm';
 import './index.css';
 
 export interface CommentItemPorps {
@@ -17,6 +17,8 @@ export interface CommentItemState {
     addChildComment: boolean;
     commentId: string;
 }
+
+const commentForm = commentFormConstructor();
 
 @observer
 export default class CommentItem extends React.Component<CommentItemPorps, CommentItemState> {
@@ -49,11 +51,15 @@ export default class CommentItem extends React.Component<CommentItemPorps, Comme
         let { commentValue: { _id, postId }, saveComment } = this.props;
         let values = commentForm.values();
         Object.assign(values, { parentId: _id, postId });
-        saveComment(values).then(()=> {
-            this.setState({
-                addChildComment: false
-            });
-            commentForm.clear();
+        commentForm.validate({ showErrors: true }).then(({ isValid }: any) => {
+            if (isValid) {
+                saveComment(values).then(() => {
+                    this.setState({
+                        addChildComment: false
+                    });
+                    commentForm.clear();
+                });
+            }
         });
     };
 

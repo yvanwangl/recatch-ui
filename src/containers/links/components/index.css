@@ -1,0 +1,9 @@
+.LinkInput-form-item {
+    display: flex;
+}
+.Links-warning {
+    padding: 30px;
+}
+.Links-warning h2 {
+    font-weight: 400;
+}

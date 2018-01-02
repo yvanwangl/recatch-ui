@@ -6,23 +6,23 @@
 	text-align: center;
 }
 
-.App-header h2 {
-	font-size: 80px;
-	font-weight: normal;
-	color: #40A9F2; 
-	margin: 0 0 30px;
-}
-
 .App-link-logo {
 	display: block;
     width: auto;
-    max-width: 390px;
-    margin: 0 auto 10px;
+    margin: 0 auto;
     overflow: hidden;
     line-height: .8;
     position: relative;
 	text-align: center;
 	cursor: pointer;
+}
+
+.App-link-logo h2 {
+	font-size: 120px;
+	font-weight: normal;
+	color: #40A9F2; 
+	margin: 0 0 100px;
+	font-family: RobotoThin;
 }
 
 .App-link-logo img {
@@ -65,16 +65,29 @@
 }
 
 .App-appmain-logo {
-	background-image: url(http://materialdesignblog.com/wp-content/uploads/2015/04/MaterialDesignBlogo.png);
+	/* background-image: url(http://materialdesignblog.com/wp-content/uploads/2015/04/MaterialDesignBlogo.png); */
 	background-size: cover;
 	height: 240px;
+	line-height: 240px;
 	margin-bottom: 30px;
+	font-family: RobotoThin;
+	text-align: center;
+	background: #1b39a8;
+	color: #fff;
+	font-size: 80px;
 }
 
 .App-content {
 	width: 90%;
 	max-width: 1600px;
 	margin: 0 auto;
+}
+
+.App-footer {
+	text-align: center;
+	background: #000;
+	color: #fff;
+	padding: 20px;
 }
 
 @keyframes App-logo-spin {

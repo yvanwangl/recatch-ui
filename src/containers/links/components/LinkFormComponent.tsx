@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Snackbar from 'material-ui/Snackbar';
+import './index.css';
 
 export interface LinkFormProps {
     saveLink: Function;

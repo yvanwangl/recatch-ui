@@ -27,7 +27,7 @@ class Projects extends React.Component<ProjectsProps> {
 
     render() {
         let { project } = this.props;
-        let projectItems = project.projects.map((p: ProjectModel) => <ProjectItem key={p.id} item={p} buttonLabel='查看项目' />)
+        let projectItems = project.projects.map((p: ProjectModel) => <ProjectItem key={p['_id']} item={p} buttonLabel='查看项目' />)
         return (
             <div className='Item-wrapper'>
                 {projectItems}

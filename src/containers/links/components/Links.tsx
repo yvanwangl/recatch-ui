@@ -57,21 +57,33 @@ class Links extends React.Component<LinkProps, LinkState> {
     render() {
         let { link } = this.props;
         let { openDialog } = this.state;
-        let linkItems = link.links.map((l: LinkModel) => <LinkItem key={l.id} item={l} buttonLabel='查看友链' />)
+        let linkItems = link.links.map((l: LinkModel) => <LinkItem key={l['_id']} item={l} buttonLabel='查看友链' />)
         return (
-            <div className='Item-wrapper'>
-                {linkItems}
-                {
-                    openDialog ?
-                        <LinkForm
-                            linkForm={linkForm}
-                            saveLink={link.saveLink}
-                            handleCancel={this.cancelLink}
-                            openDialog={openDialog}
-                        /> : null
-                }
-                <RaisedButton style={{marginTop: 30}} secondary={true} label="加入友链" fullWidth={true} onClick={this.handleCreate} />
+            <div className='Links-Manage'>
+                <div className='Links-warning'>
+                    <h2>
+                        申请友链须知：
+                    </h2>
+                    <p>1、网站不包含色情、暴力等内容</p>
+                    <p>2、网站已经在国内完成备案</p>
+                    <p>3、网站为技术类站点</p>
+                </div>
+                <div className='Item-wrapper'>
+
+                    {linkItems}
+                    {
+                        openDialog ?
+                            <LinkForm
+                                linkForm={linkForm}
+                                saveLink={link.saveLink}
+                                handleCancel={this.cancelLink}
+                                openDialog={openDialog}
+                            /> : null
+                    }
+                    <RaisedButton style={{ marginTop: 30 }} secondary={true} label="加入友链" fullWidth={true} onClick={this.handleCreate} />
+                </div>
             </div>
+
         );
     }
 }

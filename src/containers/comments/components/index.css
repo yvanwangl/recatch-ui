@@ -1,3 +1,6 @@
+.Manage-container {
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) !important;
+}
 .CommentManage-title {
 	font-size: 20px;
 	font-weight: 400;
@@ -5,6 +8,20 @@
 }
 .CommentManage-commentWrap {
 	padding: 30px; 
+}
+.CommentManage-comment-title {
+	text-align: center;
+    font-size: 20px;
+    line-height: 60px;
+	color: #5a5a5a;
+	font-weight: normal;
+	margin: 0;
+}
+.CommentManage-comment-holder {
+	text-align: center;
+    font-size: 14px;
+	color: #9b9b9b;
+	margin: 0;
 }
 .CommentCard-card {
 	width: 45%;

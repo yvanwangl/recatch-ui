@@ -1,0 +1,15 @@
+.About {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto 100px;
+}
+.About h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 30px;
+}
+.About p {
+    margin: 0;
+    line-height: 34px;
+    font-size: 18px;
+}
