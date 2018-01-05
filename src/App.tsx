@@ -47,8 +47,8 @@ class App extends React.Component<object & RouteComponentProps<any>, AppState> {
 				<header className='App-appbar'>
 					<div style={{ width: 100, height: 80 }}></div>
 					<span style={{ paddingRight: 20 }}>
-						<FlatButton label="登陆" labelStyle={{ fontSize: 16 }} secondary={true} />
-						<FlatButton label="注册" labelStyle={{ fontSize: 16 }} secondary={true} />
+						<a href="http://admin.yvanwang.com"><FlatButton label="登陆" labelStyle={{ fontSize: 16 }} secondary={true} /></a>
+						<a href="http://admin.yvanwang.com"><FlatButton label="注册" labelStyle={{ fontSize: 16 }} secondary={true} /></a>
 					</span>
 				</header>
 				<ListButton listClassName={this.state.drawerOpen ? 'close' : 'list'} onButtonClick={this.handleClick} />

@@ -17,7 +17,7 @@ const defaultOptionsDev = {
 
 //部署模式，同域请求
 // 同域请求url
-const httpServerProd = `http://localhost:${process.env.PORT}`;
+const httpServerProd = '';
 //同域请求头配置
 const defaultOptionsProd = {
     credentials: 'same-origin',
