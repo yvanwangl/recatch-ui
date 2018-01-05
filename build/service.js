@@ -21,7 +21,7 @@ app.use('/api', (req, res) => {
   return proxy.web(req, res, { target: proxyTarget })
 });
 
-app.get('/', function (request, response) {
+app.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, './index.html'));
 });
 
