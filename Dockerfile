@@ -16,7 +16,7 @@ COPY . .
 RUN cp -a /tmp/node_modules /usr/src/recatch-ui
 
 #RUN npm install -g cross-env pm2-docker
-#RUN npm install pm2 -g
+RUN npm install pm2 -g
 
 EXPOSE 8086
 
