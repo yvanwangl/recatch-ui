@@ -67,7 +67,7 @@
     "start": "cross-env NODE_ENV=development node scripts/start.js",
     "build": "cross-env NODE_ENV=production node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "start:prod": "cross-env NODE_ENV=production pm2 start ./build/service.js --name recatch-ui",
+    "start:prod": "pm2 start ecosystem.config.js --env production --name recatch-ui",
     "start:docker": "cross-env NODE_ENV=production pm2-docker start ./build/service.js"
   },
   "devDependencies": {
