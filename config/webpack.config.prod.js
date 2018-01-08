@@ -329,8 +329,8 @@ module.exports = {
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new CopyWebpackPlugin([{
-      from: path.join(__dirname, '../src/server/service.js'),
-      to:  path.join(__dirname, '../build/service.js'),
+      from: path.join(__dirname, '../src/server/'),
+      to:  path.join(__dirname, '../build/'),
     }])
   ],
   // Some libraries import Node modules but don't use them in the browser.
