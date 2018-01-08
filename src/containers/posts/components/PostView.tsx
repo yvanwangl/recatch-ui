@@ -90,6 +90,9 @@ class PostView extends React.Component<PostViewProps> {
         } = viewPost || {};
 
         let labelItems = labels.map((label: any) => {
+            if(typeof label == 'string'){
+                return label;
+            }
             return <Chip
                 key={label['_id']}
                 style={{ margin: 4, display: 'inline-block' }}

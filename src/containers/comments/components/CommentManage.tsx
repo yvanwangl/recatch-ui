@@ -90,7 +90,7 @@ class CommentManage extends React.Component<CommentManageProps, CommentManageSta
         });
 
         return (
-            <Paper className='Manage-container'>
+            <Paper className='Manage-container CommentManage-container'>
                 <div className="CommentManage-commentWrap">
                     <h3 className='CommentManage-comment-title'>[ 评论一角 ]</h3>
                     <p className='CommentManage-comment-holder'>{commentItems.length == 0 ? '还没有评论，沙发等你来！' : '欢迎留下到此一游的见证 : )'}</p>

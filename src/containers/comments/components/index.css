@@ -1,6 +1,9 @@
 .Manage-container {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) !important;
 }
+.CommentManage-container {
+	margin-bottom: 50px;
+}
 .CommentManage-title {
 	font-size: 20px;
 	font-weight: 400;
