@@ -65,13 +65,13 @@ class PostView extends React.Component<PostViewProps> {
     componentDidMount() {
         let { post, match } = this.props;
         if (post.posts.length == 0) {
-            post.fetchPosts().then(()=> post.fetchPostById(match.params.postId));
+            post.fetchPosts().then(() => post.fetchPostById(match.params.postId));
         }
     }
 
     render() {
         let { post: { posts }, match } = this.props;
-        if(posts.length == 0){
+        if (posts.length == 0) {
             return null;
         }
         let viewPost = posts.filter((post: any) => post._id == match.params.postId)[0];
@@ -90,7 +90,7 @@ class PostView extends React.Component<PostViewProps> {
         } = viewPost || {};
 
         let labelItems = labels.map((label: any) => {
-            if(typeof label == 'string'){
+            if (typeof label == 'string') {
                 return label;
             }
             return <Chip
