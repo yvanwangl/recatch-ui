@@ -1,5 +1,6 @@
 import { observable, action, runInAction } from 'mobx';
 import request from '../../utils/request';
+import { filterInput } from '../../utils/util';
 
 class LinkStore {
     @observable links: any = [];
@@ -20,6 +21,8 @@ class LinkStore {
 
     @action.bound
     async saveLink(link: object) {
+        //数据提交前对数据清洗
+        Object.keys(link).map((key: string) => link[key] = filterInput(link[key]));
         let result = await request('/api/links', {
             method: 'post',
             body: JSON.stringify(link)

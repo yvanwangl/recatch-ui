@@ -33,12 +33,17 @@ class LinkForm extends React.Component<LinkFormProps, LinkFormState> {
     handleConfirm = () => {
         let { linkForm, saveLink, handleCancel } = this.props;
         let values = linkForm.values();
-        saveLink(values).then((result: any) => {
-            if (result.success) {
-                this.setState({ openSnackbar: true });
-                setTimeout(handleCancel, delayTime);
+        linkForm.validate({ showErrors: true }).then(({ isValid }: any) => {
+            if (isValid) {
+                saveLink(values).then((result: any) => {
+                    if (result.success) {
+                        this.setState({ openSnackbar: true });
+                        setTimeout(handleCancel, delayTime);
+                    }
+                });
             }
         });
+        
     };
 
     render() {
@@ -84,7 +89,7 @@ class LinkForm extends React.Component<LinkFormProps, LinkFormState> {
                     <div className='LinkInput-form-item'>
                         <TextField
                             floatingLabelText='网站地址'
-                            hintText='网站地址'
+                            hintText='网址示例: https://example.com'
                             errorText={linkField.error}
                             fullWidth={true}
                             {...linkField.bind() }

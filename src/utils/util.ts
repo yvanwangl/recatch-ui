@@ -79,3 +79,8 @@ export function emptyObj(obj: object){
     }
     return true;
 }
+
+/**
+ * 对用户输入数据进行清洗
+ */
+export const filterInput = (input: string) => input.replace(/<[^><]*script[^><]*>/ig, '').replace(/<[\/\d\w]*>/ig, '');

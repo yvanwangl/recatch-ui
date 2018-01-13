@@ -104,7 +104,7 @@ class PostView extends React.Component<PostViewProps> {
 
         return (
             <div className='PostView-wrapper'>
-                <div className='PostView-content'>
+                <div className='PostView-content Editor-content'>
                     <h1 className='PostView-title'>{title}</h1>
                     <div className='PostView-info'>
                         <span className='PostView-card-icon-wrapper'><TodayIcon className='PostView-card-icon' /> {dateFormat(publishDate)}</span>
