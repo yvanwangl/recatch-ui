@@ -116,7 +116,7 @@
     border: 0;
 }
 .PostView-content .fr-box.fr-basic.fr-top .fr-wrapper>div:first-child>a:first-child {
-    display: none;
+    display: none !important;
 }
 .PostView-title {
     text-align: center;
@@ -204,6 +204,9 @@
     color: #96cbfe;
     padding: 30px;
     border-top: 10px solid;
+    font-size: 16px;
+    line-height: 1.93;
+    font-family: Menlo,Monaco,Consolas,Courier New,monospace;
 }
 
 .Editor-content .fr-view code[class*=language-], .Editor-content .fr-view pre[class*=language-] {
