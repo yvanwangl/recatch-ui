@@ -106,8 +106,8 @@ class LinkForm extends React.Component<LinkFormProps, LinkFormState> {
                     </div>
                     <div className='LinkInput-form-item'>
                         <TextField
-                            floatingLabelText='你的梦想是什么'
-                            hintText='你的梦想是什么'
+                            floatingLabelText='网站简介'
+                            hintText='介绍一下你自己吧 :)'
                             errorText={descriptionField.error}
                             fullWidth={true}
                             rows={2}
