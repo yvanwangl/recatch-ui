@@ -67,6 +67,12 @@ class Links extends React.Component<LinkProps, LinkState> {
                     <p>1、网站不包含色情、暴力等内容</p>
                     <p>2、网站已经在国内完成备案</p>
                     <p>3、网站为技术类站点</p>
+
+                    <h2>
+                        请将本站加入你的友链：
+                    </h2>
+                    <p>1、网址：https://www.yvanwang.com</p>
+                    <p>2、网站简介：前端开发攻城狮，学设计出身，最后发现还是更喜欢写代码。喜欢新技术，乐于分享。</p>
                 </div>
                 <div className='Item-wrapper'>
 

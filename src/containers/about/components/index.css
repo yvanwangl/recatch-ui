@@ -13,3 +13,9 @@
     line-height: 34px;
     font-size: 18px;
 }
+.About p:last-child {
+    margin-top: 30px;
+}
+.About a {
+    text-decoration: none;
+}

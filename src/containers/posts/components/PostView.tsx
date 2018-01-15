@@ -118,7 +118,10 @@ class PostView extends React.Component<PostViewProps> {
                         config={this.config}
                         model={content}
                     />
-                    {labelItems}
+                    <p className='PostView-authInfo'>原创文章作者：{author} ( 如若转载，请注明出处 )</p>
+                    <div className='PostView-labelItems'>
+                        {labelItems}
+                    </div>
                 </div>
                 <div className='PostView-sibllings'>
                     {

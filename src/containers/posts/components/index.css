@@ -122,6 +122,14 @@
     margin: 0;
     font-weight: 400;
 }
+.PostView-authInfo {
+    text-align: right;
+    margin: 40px auto 30px;
+}
+.PostView-labelItems {
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
 .PostView-sibllings {
     display: flex;
     justify-content: space-between;
@@ -164,6 +172,11 @@
 .PostView-next span {
     padding-right: 170px;
     background-position: 100% 0;
+}
+
+/* 引用样式重写 */
+.Editor-content .fr-view blockquote {
+    padding-left: 15px;
 }
 
 /* 代码样式重写 */
