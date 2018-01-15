@@ -34,6 +34,7 @@ class PostView extends React.Component<PostViewProps> {
     }
 
     config = {
+        key: 'GC-9qigB-32jbjD6lD-8I-8==',
         placeholderText: 'Edit Your Content Here!',
         charCounterCount: false,
         toolbarButtons: [],

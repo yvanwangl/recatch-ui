@@ -115,9 +115,6 @@
     box-shadow: none;
     border: 0;
 }
-.PostView-content .fr-box.fr-basic.fr-top .fr-wrapper>div:first-child>a:first-child {
-    display: none !important;
-}
 .PostView-title {
     text-align: center;
     font-size: 24px;
