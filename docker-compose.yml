@@ -1,0 +1,11 @@
+version: '3'
+services:
+  recatch:
+    image: recatch-ui:latest
+    container_name: recatch-ui
+    ports:
+      - "8086:8086"
+    environment:
+      - PROXY_PORT=8082
+      - PORT=8086
+      - PROXY_HOST=192.168.0.1
