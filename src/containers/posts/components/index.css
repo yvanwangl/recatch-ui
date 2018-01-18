@@ -105,6 +105,7 @@
 }
 .PostView-content .fr-box.fr-basic .fr-element {
     min-height: 500px;
+    overflow: hidden;
 }
 .PostView-content .fr-element.fr-disabled {
     -webkit-user-select: auto;
