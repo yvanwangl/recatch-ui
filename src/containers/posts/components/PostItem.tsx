@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {observer} from 'mobx-react';
+import { observer } from 'mobx-react';
 import TodayIcon from 'material-ui/svg-icons/action/today';
 import VisibilityIcon from 'material-ui/svg-icons/action/visibility';
 import CommentIcon from 'material-ui/svg-icons/communication/comment';
@@ -13,8 +13,8 @@ export interface AuthorModel {
 	avatar?: string;
 }
 export interface PostModel {
-    _id: number | string;
-    author: string;
+	_id: number | string;
+	author: string;
 	title: string;
 	userId: string;
 	userName: string;
@@ -23,8 +23,8 @@ export interface PostModel {
 	count?: string;
 	publishDate: string;
 	coverImg: string;
-    comments: Array<string>;
-    labels: Array<any>;
+	comments: Array<string>;
+	labels: Array<any>;
 }
 
 export interface PostItemProps {
@@ -46,6 +46,7 @@ class PostItem extends React.Component<PostItemProps> {
 			<span className='PostItem-card' onClick={handleItemClick}>
 				<Card style={{ height: '100%' }} containerStyle={{ height: '100%', position: 'relative' }}>
 					<CardHeader
+						textStyle={{ paddingRight: 0 }}
 						title={<h1 className='PostItem-card-title'>{title}</h1>}
 					//avatar={avatar}
 					/>
