@@ -323,6 +323,12 @@ code {
     .Editor-content .fr-view pre {
         font-size: 16px;
     }
+    .PostView-previous span {
+        padding-left: 0;
+    }
+    .PostView-next span {
+        padding-right: 0;
+    }
 }
 
 @media screen and (max-width: 420px) {
