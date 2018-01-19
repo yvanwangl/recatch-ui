@@ -103,6 +103,7 @@
     display: inline-block;
     box-sizing: border-box;
     width: 100%;
+    overflow: hidden;
 }
 .PostView-content .fr-box.fr-basic .fr-element {
     min-height: 500px;
@@ -308,7 +309,7 @@ code {
         margin: 1em 0;
     }
     .PostView-content {
-        padding: 20px 20px 30px;
+        padding: 20px 14px 30px;
     }
     .PostView-authInfo {
         padding-right: 30px;
@@ -318,6 +319,9 @@ code {
 @media screen and (max-width: 490px) {
     .PostItem-card {
         width: 90%;
+    }
+    .Editor-content .fr-view pre {
+        font-size: 16px;
     }
 }
 
