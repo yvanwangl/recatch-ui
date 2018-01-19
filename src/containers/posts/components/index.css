@@ -56,6 +56,7 @@
 }
 .PostView-info {
     justify-content: center;
+    margin: 22px 0;
 }
 .PostItem-card-icon-wrapper,
 .PostView-card-icon-wrapper {
@@ -119,9 +120,9 @@
 .PostView-title {
     text-align: center;
     font-size: 24px;
-    line-height: 70px;
     margin: 0;
     font-weight: 400;
+    line-height: 1.6;
 }
 .PostView-authInfo {
     text-align: right;
@@ -136,6 +137,7 @@
     justify-content: space-between;
     padding-top: 30px;
     padding-bottom: 15px;
+    flex-wrap: wrap;
 }
 .PostView-sibllings div {
     width: 48%;
@@ -182,7 +184,8 @@
 
 /* 代码样式重写 */
 
-.Editor-content .fr-element a {
+.Editor-content .fr-element a,
+.Editor-content .fr-view a {
     text-decoration: none;
 }
 
@@ -268,3 +271,73 @@ code {
 }
 
 /* 代码样式重写结束 */
+
+@media screen and (max-width: 1070px) {
+    .PostView-wrapper {
+        width: 100%;
+    } 
+    .Posts-content {
+        margin: 0 4%;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .PostItem-card {
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .PostView-sibllings {
+        justify-content: center;
+    }
+    .PostView-sibllings div {
+        width: 90%;
+        margin: 20px 0;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    .Posts-content {
+        justify-content: center;
+    }
+    .PostItem-card {
+        width: 70%;
+    }
+    .Editor-content .fr-view pre {
+        margin: 1em 0;
+    }
+    .PostView-content {
+        padding: 20px 20px 30px;
+    }
+    .PostView-authInfo {
+        padding-right: 30px;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .PostItem-card {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .PostView-info {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+    .PostView-card-icon-wrapper {
+        margin-right: 14px;
+    }
+    .PostView-authInfo {
+        padding: 0;
+        text-align: center;
+    }
+    .PostItem-card {
+        width: 100%;
+    }
+    .PostView-sibllings div {
+        width: 100%;
+        margin: 20px 0;
+    }
+}

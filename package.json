@@ -7,6 +7,7 @@
     "@types/material-ui": "^0.18.5",
     "@types/react-router-config": "^1.0.5",
     "@types/react-router-dom": "^4.2.3",
+    "@types/react-scroll": "^1.5.2",
     "@types/validatorjs": "^3.7.1",
     "autoprefixer": "7.1.2",
     "babel-core": "^6.26.0",
@@ -37,6 +38,7 @@
     "mobx-react": "^4.3.5",
     "mobx-react-form": "^1.32.2",
     "object-assign": "4.1.1",
+    "pm2-docker": "^2.1.0",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
@@ -46,6 +48,7 @@
     "react-froala-wysiwyg": "^2.7.3",
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
+    "react-scroll": "^1.7.6",
     "source-map-loader": "^0.2.1",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -60,8 +63,7 @@
     "webpack": "3.5.1",
     "webpack-dev-server": "2.7.1",
     "webpack-manifest-plugin": "1.2.1",
-    "whatwg-fetch": "2.0.3",
-    "pm2-docker": "^2.1.0"
+    "whatwg-fetch": "2.0.3"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development node scripts/start.js",

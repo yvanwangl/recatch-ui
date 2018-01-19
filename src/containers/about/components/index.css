@@ -19,3 +19,9 @@
 .About a {
     text-decoration: none;
 }
+
+@media screen and (max-width: 490px) {
+    .About p {
+        font-size: 16px;
+    }
+}

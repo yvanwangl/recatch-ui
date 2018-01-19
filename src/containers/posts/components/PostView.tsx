@@ -12,9 +12,11 @@ import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 // Require Font Awesome.
 import 'font-awesome/css/font-awesome.css';
-import FroalaEditor from 'react-froala-wysiwyg';
+//import FroalaEditor from 'react-froala-wysiwyg';
+import FroalaEditorView from 'react-froala-wysiwyg/FroalaEditorView';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router';
+import { animateScroll as scroll } from 'react-scroll';
 import PostStore from '../PostStore';
 import CommentManage from '../../comments/components/CommentManage';
 import { dateFormat } from '../../../utils/util';
@@ -31,6 +33,12 @@ export interface PostViewProps {
 class PostView extends React.Component<PostViewProps> {
     constructor(props: any) {
         super(props);
+        //组件初始化滚动到顶部
+        scroll.scrollToTop({
+            duration: 700,
+            delay: 0,
+            smooth: "easeOutQuad"
+        });
     }
 
     config = {
@@ -59,7 +67,11 @@ class PostView extends React.Component<PostViewProps> {
         post.fetchPostById(postId);
         history.push(`/post/${postId}`);
         //滚动到顶部
-        window.scrollTo(0, 0);
+        scroll.scrollToTop({
+            duration: 1000,
+            delay: 0,
+            smooth: "easeOutQuad"
+        });
     };
 
     //客户端渲染，加载所有文章，
@@ -113,11 +125,7 @@ class PostView extends React.Component<PostViewProps> {
                         <span className='PostView-card-icon-wrapper'><VisibilityIcon className='PostView-card-icon' /> {count}</span>
                         <span className='PostView-card-icon-wrapper'><CommentIcon className='PostView-card-icon' /> {comments.length}</span>
                     </div>
-                    <FroalaEditor
-                        tag='textarea'
-                        config={this.config}
-                        model={content}
-                    />
+                    <FroalaEditorView model={content} />
                     <p className='PostView-authInfo'>原创文章作者：{author} ( 如若转载，请注明出处 )</p>
                     <div className='PostView-labelItems'>
                         {labelItems}

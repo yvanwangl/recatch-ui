@@ -38,3 +38,19 @@
     width: 100%;
     box-sizing: border-box;
 }
+
+@media screen and (max-width: 610px) {
+    .Item-wrapper {
+        justify-content: center;
+        padding: 4%;
+    }
+	.Item-card {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 420px) {
+	.Item-card {
+		width: 100%;
+	}
+}
