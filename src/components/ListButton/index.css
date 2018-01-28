@@ -2,9 +2,12 @@
     margin: 0;
     padding: 0;
     text-align: center;
-    position: fixed;
-    top: -4px;
-    left: -16px;
+	position: fixed;
+	top:0;
+	left: 0;
+	height: 80px;
+	display: flex;
+	align-items: center;
     z-index: 2000; 
 }
     .listContainer svg {
@@ -52,9 +55,15 @@
     .listContainer svg {
       width: 120px;
       height: 64px; }
-      .listContainer svg path {
-        stroke: #fff; } }
-  @media screen and (max-width: 420px) {
+	}
+
+	@media screen and (max-width: 420px) {
+		.listContainer svg {
+		  width: 88px;
+		  height: 64px; }
+		}
+	
+  /* @media screen and (max-width: 420px) {
     .listContainer {
       width: 120px;
       height: 54px; }
@@ -62,4 +71,5 @@
         width: 86px;
         height: 64px;
         margin-top: -8px;
-        margin-left: 30px; } }
+        margin-left: 30px; } 
+      } */

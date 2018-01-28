@@ -12,10 +12,19 @@
     margin: 0;
     line-height: 34px;
     font-size: 18px;
+    text-indent: 36px;
 }
 .About p:last-child {
     margin-top: 30px;
+    text-indent: 0;
 }
 .About a {
     text-decoration: none;
+}
+
+@media screen and (max-width: 490px) {
+    .About p {
+        font-size: 16px;
+        text-indent: 32px;
+    }
 }

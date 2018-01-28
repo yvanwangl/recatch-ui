@@ -7,9 +7,9 @@ import MenuItem from 'material-ui/MenuItem';
 import MenuLink from './components/MenuLink';
 import FlatButton from 'material-ui/FlatButton';
 import DashBoardIcon from 'material-ui/svg-icons/action/dashboard';
-import PostListIcon from 'material-ui/svg-icons/action/list';
-import LabelIcon from 'material-ui/svg-icons/action/label';
-import CommentIcon from 'material-ui/svg-icons/communication/comment';
+import ProjectIcon from 'material-ui/svg-icons/av/library-books';
+import LinkIcon from 'material-ui/svg-icons/social/share';
+import AboutIcon from 'material-ui/svg-icons/communication/comment';
 import ListButton from './components/ListButton';
 import './App.css';
 
@@ -20,6 +20,8 @@ export interface AppProps {
 export interface AppState {
     drawerOpen: boolean;
 }
+
+const ADMIN_LINK = "https://admin.yvanwang.com";
 
 class App extends React.Component<object & RouteComponentProps<any>, AppState> {
 
@@ -47,8 +49,8 @@ class App extends React.Component<object & RouteComponentProps<any>, AppState> {
                 <header className='App-appbar'>
                     <div style={{ width: 100, height: 80 }}></div>
                     <span style={{ paddingRight: 20 }}>
-                        <a href="http://admin.yvanwang.com" target="_blank"><FlatButton label="登录" labelStyle={{ fontSize: 16 }} secondary={true} /></a>
-                        <a href="http://admin.yvanwang.com" target="_blank"><FlatButton label="注册" labelStyle={{ fontSize: 16 }} secondary={true} /></a>
+                        <a href={ADMIN_LINK} target="_blank"><FlatButton label="登录" labelStyle={{ fontSize: 16 }} secondary={true} /></a>
+                        <a href={ADMIN_LINK} target="_blank"><FlatButton label="注册" labelStyle={{ fontSize: 16 }} secondary={true} /></a>
                     </span>
                 </header>
                 <ListButton listClassName={this.state.drawerOpen ? 'close' : 'list'} onButtonClick={this.handleClick} />
@@ -58,11 +60,13 @@ class App extends React.Component<object & RouteComponentProps<any>, AppState> {
                         onRequestChange={(open) => this.setState({ drawerOpen: open })}
                         open={this.state.drawerOpen}
                     >
-                        <div className='App-appmain-logo'>Yvan</div>
+                        <div className='App-appmain-logo' onClick={this.handleLogoClick}>
+                            Yvan
+                        </div>
                         <MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/' linkText='主页' />} leftIcon={<DashBoardIcon />} />
-                        <MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/projects' linkText='项目' />} leftIcon={<LabelIcon />} />
-                        <MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/links' linkText='友链墙' />} leftIcon={<PostListIcon />} />
-                        <MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/about' linkText='关于' />} leftIcon={<CommentIcon />} />
+                        <MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/projects' linkText='项目' />} leftIcon={<ProjectIcon />} />
+                        <MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/links' linkText='友链墙' />} leftIcon={<LinkIcon />} />
+                        <MenuItem onClick={this.handleClick} primaryText={<MenuLink to='/about' linkText='关于' />} leftIcon={<AboutIcon />} />
                     </Drawer>
                     <div>
                         <header className='App-header'>
