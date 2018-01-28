@@ -21,7 +21,7 @@
 .Item-card-text {
     line-height: 2;
     color: #2c2c2c !important;
-    max-height: 145px;
+    /* max-height: 145px; */
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
