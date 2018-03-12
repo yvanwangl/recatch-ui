@@ -19,6 +19,11 @@
 .PostItem-card:hover {
     box-shadow: 0 6px 20px #AFAFAF !important;
 }
+.PostItem-fill, 
+.PostItem-fill:hover {
+    box-shadow: none !important;
+    cursor: auto !important;
+}
 .PostItem-coverImg {
     height: 200px;
     background-size: cover;
@@ -269,6 +274,30 @@ code {
     line-height: 2;
     margin: 0;
     letter-spacing: 1px;
+}
+.pagination {
+    height: 56px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.pagination .nextPage,
+.pagination .prevPage {
+    position: absolute;
+    top: 0;
+}
+
+.pagination .nextPage {
+    right: 0;
+}
+.pagination .prevPage {
+    left: 0;
+}
+
+.pagination .nextPage:hover,
+.pagination .prevPage:hover {
+    box-shadow: 0 25px 55px 0 rgba(0, 0, 0, 0.21), 0 16px 28px 0 rgba(0, 0, 0, 0.22) !important;
+    transition: all 0.2s ease-out;  
 }
 
 /* 代码样式重写结束 */

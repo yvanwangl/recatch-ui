@@ -78,7 +78,7 @@ class PostView extends React.Component<PostViewProps> {
     componentDidMount() {
         let { post, match } = this.props;
         if (post.posts.length == 0) {
-            post.fetchPosts().then(() => post.fetchPostById(match.params.postId));
+            post.fetchPosts(1).then(() => post.fetchPostById(match.params.postId));
         }
     }
 

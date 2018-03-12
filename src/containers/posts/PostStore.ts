@@ -2,6 +2,11 @@ import { action, observable, runInAction } from 'mobx';
 import request from '../../utils/request';
 
 class PostStore {
+
+    @observable currentPage: number = 1;
+
+    @observable totalCount: number = 1;
+
     @observable posts: any = [];
 
     rootStore: object;
@@ -12,11 +17,14 @@ class PostStore {
     }
 
     @action
-    async fetchPosts() {
-        const result = await request('/api/posts');
+    async fetchPosts(page: number) {
+        const result = await request(`/api/posts?currentPage=${page}`);
         if(result && result.success) {
             runInAction(() => {
-                this.posts = result.data.posts;
+                let { posts, totalCount} = result.data;
+                this.posts = posts;
+                this.totalCount = totalCount;
+                this.currentPage = page;
             });
         }
     }
