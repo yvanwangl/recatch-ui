@@ -288,10 +288,10 @@ code {
 }
 
 .pagination .nextPage {
-    right: 0;
+    right: 100px;
 }
 .pagination .prevPage {
-    left: 0;
+    left: 100px;
 }
 
 .pagination .nextPage:hover,
