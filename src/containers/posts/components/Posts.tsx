@@ -48,7 +48,7 @@ class Posts extends React.Component<PostsProps & RouteComponentProps<any>> {
         let postItems = posts.map((p: any) => {
             return <PostItem key={p._id} post={p} handleItemClick={() => this.handleItemClick(p._id)} />;
         });
-        let fillPostItems = new Array(postFill).fill('post').map(p => <span className='PostItem-card PostItem-fill'></span>);
+        let fillPostItems = new Array(postFill).fill('post').map((p, index) => <span key={`${p}-${index}`} className='PostItem-card PostItem-fill'></span>);
         const nextBtn = <FloatingActionButton className='nextPage' secondary={true} onClick={() => this.handlePageChange(1)}><NextIcon /></FloatingActionButton>;
         const prevBtn = <FloatingActionButton className='prevPage' secondary={true} onClick={() => this.handlePageChange(-1)}><PrevIcon /></FloatingActionButton>;
         return (
@@ -59,9 +59,10 @@ class Posts extends React.Component<PostsProps & RouteComponentProps<any>> {
                 </div>
                 <div className='pagination'>
                     {
-                        currentPage == 1 ? nextBtn :
-                            currentPage == Math.ceil(totalCount / limit) ? prevBtn :
-                                <span>{nextBtn} {prevBtn}</span>
+                        totalCount <= limit ? null :
+                            currentPage == 1 ? nextBtn :
+                                currentPage == Math.ceil(totalCount / limit) ? prevBtn :
+                                    <span>{prevBtn} {nextBtn}</span>
                     }
                 </div>
             </div>
